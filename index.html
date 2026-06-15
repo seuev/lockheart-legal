@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lockheart — Legal</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface-2: #1c2330;
+    --line: #2a3140;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --blue: #4BB8FA;
+    --pink: #FA6781;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── Topbar ── */
+  .topbar {
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .topbar-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  .brand-mark {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, var(--blue), var(--pink));
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .brand-mark svg { width: 15px; height: 15px; }
+
+  .brand-jp {
+    color: var(--muted);
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  /* ── Tab nav ── */
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .tab-btn {
+    background: none;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    text-transform: uppercase;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+
+  .tab-btn:hover { color: var(--text); }
+
+  .tab-btn.active {
+    color: var(--text);
+    background: var(--surface-2);
+    border-color: var(--line);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 56px 24px 40px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    margin-bottom: 28px;
+    transition: color 0.2s;
+  }
+
+  .hero-tag .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--pink));
+    flex-shrink: 0;
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: 48px;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    transition: background-image 0.3s;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 540px;
+    margin: 0 0 18px;
+  }
+
+  .updated {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .updated strong { color: var(--text); }
+
+  /* ── Sections ── */
+  main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .section {
+    border-top: 1px solid var(--line);
+    padding: 36px 0;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .section-num {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--bg);
+    background: linear-gradient(135deg, var(--blue), var(--pink));
+    border-radius: 8px;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-head h2 {
+    font-size: 19px;
+    font-weight: 800;
+    margin: 6px 0 0;
+    letter-spacing: -0.01em;
+  }
+
+  .section-body p, .section-body li {
+    font-size: 15.5px;
+    color: #c9d1d9;
+  }
+
+  .section-body ul {
+    padding-left: 20px;
+    margin: 10px 0;
+  }
+
+  .section-body li { margin-bottom: 8px; }
+  .section-body strong { color: var(--text); }
+
+  .section-body code {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 13px;
+    font-family: 'SF Mono', Consolas, monospace;
+  }
+
+  /* ── Callouts ── */
+  .callout {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-top: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .callout::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--blue), var(--pink));
+  }
+
+  .callout.warn::before {
+    background: linear-gradient(180deg, var(--pink), var(--blue));
+  }
+
+  .callout p {
+    margin: 0;
+    font-size: 14.5px;
+    padding-left: 12px;
+  }
+
+  /* ── Table ── */
+  .data-table {
+    margin-top: 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+
+  th, td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  tr:last-child th, tr:last-child td { border-bottom: none; }
+
+  th {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--surface-2);
+    font-weight: 800;
+  }
+
+  td { color: #c9d1d9; background: var(--surface); }
+  td:first-child { color: var(--text); font-weight: 700; white-space: nowrap; }
+
+  /* ── Footer ── */
+  footer {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 56px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer .brand { font-size: 14px; }
+
+  footer .foot-links {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+  }
+
+  footer a {
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  footer a:hover { color: var(--text); }
+
+  @media (max-width: 700px) {
+    h1 { font-size: 36px; }
+    .section { grid-template-columns: 1fr; gap: 14px; }
+    th, td { font-size: 13px; padding: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="11" width="14" height="10" rx="2" fill="#0d1117"/>
+          <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#0d1117" stroke-width="2.2" fill="none"/>
+        </svg>
+      </span>
+      Lockheart <span class="brand-jp">// ロックハート</span>
+    </div>
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab('terms', this)">Terms</button>
+      <button class="tab-btn" onclick="switchTab('privacy', this)">Privacy</button>
+    </nav>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<div class="hero">
+  <div class="hero-tag" id="hero-tag"><span class="dot"></span><span id="hero-tag-text">Legal — Discord Bot</span></div>
+  <h1 id="hero-title">Terms of Service</h1>
+  <p class="hero-sub" id="hero-sub">The rules for using Lockheart — moderation, role security, whispers, and captioning, across every server it runs in.</p>
+  <div class="updated">Last updated <strong>14 June 2026</strong></div>
+</div>
+
+<main>
+
+<!-- ═══════════════════════════════ TERMS ═══════════════════════════════ -->
+<div id="panel-terms" class="tab-panel active">
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>What Lockheart does</h2>
+    </div>
+    <div class="section-body">
+      <p>Depending on how a server configures it, Lockheart may:</p>
+      <ul>
+        <li>Monitor role changes and log them to designated channels.</li>
+        <li>Automatically apply or remove roles based on server-defined rules.</li>
+        <li>Send moderation notices, including bilingual (English/Arabic) messages, to users affected by automated actions.</li>
+        <li>Detect messages sent in designated "restricted" channels and take automated action, including deleting the message, banning the account, and sending the user a direct message explaining the action and how to appeal.</li>
+        <li>Provide a "whisper" feature allowing a user to send a message that only specific, selected recipients can reveal.</li>
+        <li>Generate captioned images and GIFs from a text command (<code>-cap</code> / <code>-caption</code>).</li>
+        <li>Send audit logs of the above actions to channels or webhooks designated by server administrators.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Eligibility</h2>
+    </div>
+    <div class="section-body">
+      <p>You must meet Discord's own minimum age requirements to use Discord, and by extension, Lockheart. Server administrators are responsible for configuring Lockheart in a way that complies with Discord's Terms of Service and Community Guidelines.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Server administrator responsibilities</h2>
+    </div>
+    <div class="section-body">
+      <p>Administrators who configure Lockheart's automated moderation features (including role enforcement and restricted-channel autobans) are solely responsible for:</p>
+      <ul>
+        <li>Ensuring these features comply with Discord's Terms of Service.</li>
+        <li>Clearly communicating server rules to members, including any channels where sending a message results in an automatic ban.</li>
+        <li>Providing and maintaining a working appeals process for users affected by automated bans.</li>
+        <li>Reviewing appeals submitted by affected users in good faith.</li>
+      </ul>
+      <div class="callout">
+        <p><strong>Automated bans are reversible by server staff.</strong> If you believe you were banned in error, the message you receive from Lockheart will direct you to an appeal server where you can open a ticket.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Acceptable use</h2>
+    </div>
+    <div class="section-body">
+      <p>You agree not to use Lockheart to:</p>
+      <ul>
+        <li>Harass, threaten, or abuse other users, including through the whisper feature.</li>
+        <li>Generate captioned content that violates Discord's Community Guidelines, including hate speech, harassment, or sexually explicit material involving minors.</li>
+        <li>Attempt to exploit, reverse-engineer, or disrupt the Bot's functionality.</li>
+        <li>Circumvent server moderation actions taken by Lockheart.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Whisper feature</h2>
+    </div>
+    <div class="section-body">
+      <p>The whisper feature allows a user to compose a message and image visible only to selected recipients, who must actively choose to reveal it. Senders are responsible for the content of whispers they send. Server staff may review whisper metadata (sender, recipients, timestamps) through audit logs for moderation purposes, but message content is not stored or logged.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2>No warranty</h2>
+    </div>
+    <div class="section-body">
+      <p>Lockheart is provided "as is" without warranties of any kind. We do not guarantee that the Bot will be available at all times, free of errors, or that automated moderation actions will always be accurate. Server administrators and users acknowledge that automated systems can make mistakes.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2>Limitation of liability</h2>
+    </div>
+    <div class="section-body">
+      <p>To the maximum extent permitted by law, the operators of Lockheart are not liable for any damages, losses, or consequences arising from the use of, or inability to use, the Bot, including but not limited to incorrect automated moderation actions, bans, or message delivery failures.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <h2>Changes to these terms</h2>
+    </div>
+    <div class="section-body">
+      <p>These Terms may be updated from time to time. Continued use of Lockheart after changes are posted constitutes acceptance of the revised Terms.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">09</span>
+      <h2>Contact</h2>
+    </div>
+    <div class="section-body">
+      <p>Questions about these Terms can be directed to the server administrators who operate the instance of Lockheart you are interacting with.</p>
+    </div>
+  </div>
+
+</div><!-- /panel-terms -->
+
+<!-- ═══════════════════════════════ PRIVACY ═══════════════════════════════ -->
+<div id="panel-privacy" class="tab-panel">
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Information Lockheart accesses</h2>
+    </div>
+    <div class="section-body">
+      <p>To operate, Lockheart receives data from Discord's API about servers it is added to, including:</p>
+      <ul>
+        <li>Usernames, user IDs, avatars, and banners of members.</li>
+        <li>Role assignments and role changes.</li>
+        <li>Messages sent in channels Lockheart can see, where required for a specific feature (for example, detecting the <code>-cap</code> command or messages sent in a restricted channel).</li>
+        <li>Invite usage data, to determine which invite a new member used to join.</li>
+        <li>Attachments and image/GIF URLs, when used with the captioning feature.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>What is logged</h2>
+    </div>
+    <div class="section-body">
+      <p>Server administrators can configure Lockheart to send activity logs to specific channels or external webhooks. These logs may include:</p>
+      <div class="data-table">
+        <table>
+          <tr><th>Event</th><th>Data logged</th></tr>
+          <tr><td>Role / gender-role changes</td><td>Username, user ID, role change, timestamp</td></tr>
+          <tr><td>New member joins</td><td>Username, user ID, avatar, invite used, timestamp</td></tr>
+          <tr><td>Automated role enforcement</td><td>Username, user ID, action taken, timestamp</td></tr>
+          <tr><td>Restricted-channel autobans</td><td>Username, user ID, channel, message content (if any), reason, timestamp</td></tr>
+          <tr><td>Whisper sent</td><td>Sender, recipients, whether an image was attached, timestamp — <strong>not</strong> the message text</td></tr>
+          <tr><td>Whisper revealed</td><td>Which recipient revealed it, and when</td></tr>
+        </table>
+      </div>
+      <div class="callout warn">
+        <p><strong>Whisper message content is never logged or stored.</strong> Once all recipients have revealed a whisper, Lockheart deletes its in-memory record of that whisper entirely. Audit logs only ever contain metadata — who sent it, who received it, whether it had an image, and when it was revealed — never the message text itself.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>How long data is kept</h2>
+    </div>
+    <div class="section-body">
+      <ul>
+        <li><strong>Whisper data</strong> is held only in memory while a whisper is pending, and is deleted once all recipients have revealed it. If the Bot restarts before this happens, pending whisper data is lost.</li>
+        <li><strong>Audit logs</strong> are sent to channels or webhooks chosen by the server's administrators. Retention of these logs is controlled by the server, not by Lockheart.</li>
+        <li><strong>Captioned images/GIFs</strong> are generated on demand and are not stored after being sent.</li>
+        <li>Lockheart does not maintain its own persistent database of user profiles.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Restricted channel / autoban feature</h2>
+    </div>
+    <div class="section-body">
+      <p>If a server configures a restricted "do not post here" channel, any message sent there by a member without an exempt role will result in: deletion of the message, an automated ban, a direct message to the user explaining the action and how to appeal, and a log entry as described above (including the message content, if the message was text).</p>
+      <div class="callout">
+        <p>This feature is configured per-server by that server's administrators. Lockheart does not decide which channels are restricted — server staff do.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Direct messages</h2>
+    </div>
+    <div class="section-body">
+      <p>Lockheart may send a user a direct message in limited, specific circumstances — for example, to notify them of an automated ban and provide an appeal link. Lockheart does not read or store the content of DMs sent to it by users.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2>Data sharing</h2>
+    </div>
+    <div class="section-body">
+      <p>Lockheart does not sell or share data with third parties for advertising or marketing purposes. Audit log data is only sent to destinations (channels or webhooks) explicitly configured by each server's administrators.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2>Your rights</h2>
+    </div>
+    <div class="section-body">
+      <p>Because Lockheart does not maintain a central database of user data outside of Discord itself and server-configured logs, requests to access or delete data should be directed to the administrators of the specific server where you interact with Lockheart. Removing the Bot from a server, or leaving the server, stops Lockheart from accessing your data in that server going forward.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <h2>Changes to this policy</h2>
+    </div>
+    <div class="section-body">
+      <p>This policy may be updated from time to time to reflect changes in Lockheart's features. Continued use of the Bot after changes are posted constitutes acceptance of the revised policy.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">09</span>
+      <h2>Contact</h2>
+    </div>
+    <div class="section-body">
+      <p>Questions about this policy can be directed to the administrators of the server operating the instance of Lockheart you are interacting with.</p>
+    </div>
+  </div>
+
+</div><!-- /panel-privacy -->
+
+</main>
+
+<footer>
+  <div class="brand">
+    <span class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="11" width="14" height="10" rx="2" fill="#0d1117"/>
+        <path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="#0d1117" stroke-width="2.2" fill="none"/>
+      </svg>
+    </span>
+    Lockheart
+  </div>
+  <div class="foot-links">
+    <a onclick="switchTab('terms', null)">Terms of Service</a>
+    <a onclick="switchTab('privacy', null)">Privacy Policy</a>
+  </div>
+</footer>
+
+<script>
+  const heroData = {
+    terms: {
+      tagColor: 'var(--blue)',
+      title: 'background: linear-gradient(120deg, #fff 30%, var(--blue) 75%, var(--pink) 100%)',
+      h1: 'Terms of Service',
+      sub: 'The rules for using Lockheart — moderation, role security, whispers, and captioning, across every server it runs in.',
+    },
+    privacy: {
+      tagColor: 'var(--pink)',
+      title: 'background: linear-gradient(120deg, #fff 30%, var(--pink) 75%, var(--blue) 100%)',
+      h1: 'Privacy Policy',
+      sub: 'What Lockheart accesses, what it logs, and how long it keeps it — in plain terms.',
+    }
+  };
+
+  function switchTab(tab, btnEl) {
+    // panels
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + tab).classList.add('active');
+
+    // buttons
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) {
+      btnEl.classList.add('active');
+    } else {
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        if (b.textContent.toLowerCase().includes(tab === 'terms' ? 'term' : 'priv')) b.classList.add('active');
+      });
+    }
+
+    // hero
+    const d = heroData[tab];
+    document.getElementById('hero-tag').style.color = d.tagColor;
+    const h1 = document.getElementById('hero-title');
+    h1.style.cssText = d.title + '; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;';
+    h1.textContent = d.h1;
+    document.getElementById('hero-sub').textContent = d.sub;
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
