@@ -628,11 +628,9 @@
   };
 
   function switchTab(tab, btnEl, skipScroll) {
-    // panels
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-' + tab).classList.add('active');
 
-    // buttons
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     if (btnEl) {
       btnEl.classList.add('active');
@@ -642,7 +640,6 @@
       });
     }
 
-    // hero
     const d = heroData[tab];
     document.getElementById('hero-tag').style.color = d.tagColor;
     const h1 = document.getElementById('hero-title');
@@ -657,13 +654,14 @@
     if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // read hash on load, default to terms
-  const initialTab = (location.hash === '#privacy') ? 'privacy' : 'terms';
-  switchTab(initialTab, null, true);
+  document.addEventListener('DOMContentLoaded', function () {
+    const initialTab = (location.hash === '#privacy') ? 'privacy' : 'terms';
+    switchTab(initialTab, null, true);
 
-  window.addEventListener('hashchange', () => {
-    const tab = (location.hash === '#privacy') ? 'privacy' : 'terms';
-    switchTab(tab, null, true);
+    window.addEventListener('hashchange', () => {
+      const tab = (location.hash === '#privacy') ? 'privacy' : 'terms';
+      switchTab(tab, null, true);
+    });
   });
 </script>
 </body>
