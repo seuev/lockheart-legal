@@ -615,19 +615,19 @@
   const heroData = {
     terms: {
       tagColor: 'var(--blue)',
-      title: 'background: linear-gradient(120deg, #fff 30%, var(--blue) 75%, var(--pink) 100%)',
+      gradient: 'linear-gradient(120deg, #fff 30%, #4BB8FA 75%, #FA6781 100%)',
       h1: 'Terms of Service',
       sub: 'The rules for using Lockheart — moderation, role security, whispers, and captioning, across every server it runs in.',
     },
     privacy: {
       tagColor: 'var(--pink)',
-      title: 'background: linear-gradient(120deg, #fff 30%, var(--pink) 75%, var(--blue) 100%)',
+      gradient: 'linear-gradient(120deg, #fff 30%, #FA6781 75%, #4BB8FA 100%)',
       h1: 'Privacy Policy',
       sub: 'What Lockheart accesses, what it logs, and how long it keeps it — in plain terms.',
     }
   };
 
-  function switchTab(tab, btnEl) {
+  function switchTab(tab, btnEl, skipScroll) {
     // panels
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('panel-' + tab).classList.add('active');
@@ -646,12 +646,25 @@
     const d = heroData[tab];
     document.getElementById('hero-tag').style.color = d.tagColor;
     const h1 = document.getElementById('hero-title');
-    h1.style.cssText = d.title + '; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;';
+    h1.style.backgroundImage = d.gradient;
+    h1.style.webkitBackgroundClip = 'text';
+    h1.style.backgroundClip = 'text';
+    h1.style.webkitTextFillColor = 'transparent';
     h1.textContent = d.h1;
     document.getElementById('hero-sub').textContent = d.sub;
 
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.replaceState(null, '', '#' + tab);
+    if (!skipScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // read hash on load, default to terms
+  const initialTab = (location.hash === '#privacy') ? 'privacy' : 'terms';
+  switchTab(initialTab, null, true);
+
+  window.addEventListener('hashchange', () => {
+    const tab = (location.hash === '#privacy') ? 'privacy' : 'terms';
+    switchTab(tab, null, true);
+  });
 </script>
 </body>
 </html>
